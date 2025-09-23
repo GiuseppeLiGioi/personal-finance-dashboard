@@ -9,8 +9,8 @@ export default function Transactions() {
     const [date, setDate] = useState(today)
     return (
         <div className="container-fluid px-4">
-            <h1 className="title-transactions-page">TRANSAZIONI</h1>
-            <p className="p-transactions-page">In questa sezione dell'app sei in grado di aggiungere, modificare o rimuovere transazioni. Le modifiche saranno mostrate nella tabella sottostante.</p>
+            <h1 className="title-pages">TRANSAZIONI</h1>
+            <p className="p-pages">In questa sezione dell'app sei in grado di aggiungere, modificare o rimuovere transazioni. Le modifiche saranno mostrate nella tabella sottostante.</p>
 
             <div className="mb-2">
                 <label className="form-label"><strong>Titolo</strong></label>
