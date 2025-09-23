@@ -6,3 +6,9 @@ html, body {
     font-family: 'Segoe UI', sans-serif;
     background-color: #f5f6fa;
 }
+
+.sidebar{
+  height: 100vh;
+  background-color: rgb(32, 68, 55);
+  padding: 10px;
+}
