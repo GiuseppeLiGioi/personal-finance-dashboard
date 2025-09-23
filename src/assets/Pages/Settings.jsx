@@ -79,14 +79,28 @@ export default function Settings() {
 
             </div>
 
-             <div className="mt-3">
+            <div className="mt-3">
                 <label className="form-label"><strong>Lingua</strong></label>
-                <select 
-                className="form-select"
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-                ></select>
-               
+                <select
+                    className="form-select"
+                    value={language}
+                    onChange={(e) => setLanguage(e.target.value)}
+                >
+                    <option value="">-- Seleziona Lingua --</option>
+                    <option value="italiano">Italiano</option>
+                    <option value="inglese">Inglese</option>
+                </select>
+            </div>
+
+
+               <div className="mt-5">
+                <label className="form-label"><strong>File</strong></label>
+                <div className="d-flex gap-3">
+
+                <button className="btn btn-primary">Esporta CSV</button>
+                <button className="btn btn-primary">Importa CSV</button>
+                <button className="btn btn-primary">Reset Dati</button>
+                </div>
 
             </div>
 
