@@ -9,6 +9,12 @@ html, body {
 
 .sidebar{
   height: 100vh;
-  background-color: rgb(32, 68, 55);
+  background-color: rgb(75, 216, 164);
   padding: 10px;
 }
+
+.container-graphic{
+  background-color: red;
+  height: 200px;
+}
+
