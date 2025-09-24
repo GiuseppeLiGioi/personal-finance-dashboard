@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dashboard from "./assets/pages/Dashboard"
-import { transactionsData } from "./utils/transactions";
+import { transactionsData } from "./assets/utils/transactions";
 import Header from './assets/Components/Header';
 import Sidebar from './assets/Components/Sidebar';
 import Settings from "./assets/Pages/Settings";

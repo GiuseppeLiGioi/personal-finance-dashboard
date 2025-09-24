@@ -1,5 +1,5 @@
 
-    const transactionsData = [
+    export const transactionsData = [
         { title: "Spesa supermercato", type: "uscita", amount: 50, date: "2023-09-01" },
         { title: "Stipendio", type: "entrata", amount: 1500, date: "2023-09-05" },
         { title: "Cena fuori", type: "uscita", amount: 80, date: "2023-09-10" },

@@ -97,9 +97,9 @@ export default function Settings({transactions, setTransactions}) {
                 <label className="form-label"><strong>File</strong></label>
                 <div className="d-flex gap-3">
 
-                <button className="btn btn-primary">Esporta CSV</button>
-                <button className="btn btn-primary">Importa CSV</button>
-                <button className="btn btn-primary">Reset Dati</button>
+                <button type="button" className="btn btn-primary">Esporta CSV</button>
+                <button type="button" className="btn btn-primary">Importa CSV</button>
+                <button type="button" className="btn btn-primary">Reset Dati</button>
                 </div>
 
             </div>

@@ -22,6 +22,12 @@ export default function Transactions({transactions, setTransactions}) {
             (!ended || t.date <= ended)
     })
 
+
+    function addTransaction(){
+    const newTransaction = {title, type, date, amount}
+    setTransactions([...transactions, newTransaction])
+    }
+
     return (
         <div className="container-fluid px-4">
 
@@ -141,11 +147,11 @@ export default function Transactions({transactions, setTransactions}) {
                 </div>
 
             </div>
-            <button type="submit" className="btn btn-primary mt-3">Aggiungi Transazione</button>
+            <button type="button" className="btn btn-primary mt-3" onClick={addTransaction}>Aggiungi Transazione</button>
 
             <div className="mt-5">
                 <h2><strong>Storico Transazioni:</strong></h2>
-                <table class="table table-striped">
+                <table className="table table-striped">
                     <thead>
                         <tr>
                             <th>Titolo</th>
@@ -157,8 +163,8 @@ export default function Transactions({transactions, setTransactions}) {
 
                     <tbody>
                         {
-                            filteredTransactions.map((f) => (
-                                <tr>
+                            filteredTransactions.map((f, index) => (
+                                <tr key={index}>
                                     <td>{f.title}</td>
                                     <td>{f.type}</td>
                                     <td>{f.date}</td>
