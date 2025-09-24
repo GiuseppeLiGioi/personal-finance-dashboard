@@ -1,3 +1,4 @@
+//per grafici
 import { LineChart, Line } from "recharts"
 
 export default function BalanceChart() {
