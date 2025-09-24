@@ -1,12 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Dashboard from "./assets/pages/Dashboard"
+import { transactionsData } from "./utils/transactions";
 import Header from './assets/Components/Header';
 import Sidebar from './assets/Components/Sidebar';
-import Settings from "./assets/pages/Settings"
-import Transactions from "./assets/pages/Transactions"
+import Settings from "./assets/Pages/Settings";
+import Transactions from "./assets/Pages/Transactions"
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 
 function App() {
+const [transactions, setTransactions] = useState(transactionsData);
 
 
   return (
@@ -20,8 +23,8 @@ function App() {
 
               <Routes>
                 <Route path="/" element={<Dashboard />} />
-                <Route path="/transactions" element={<Transactions />} />
-                <Route path="settings" element={<Settings />} />
+                <Route path="/transactions" element={<Transactions transactions={transactions} setTransactions={setTransactions}  />} />
+                <Route path="settings" element={<Settings transactions={transactions} setTransactions={setTransactions}/>} />
               </Routes>
             </div>
           </div>

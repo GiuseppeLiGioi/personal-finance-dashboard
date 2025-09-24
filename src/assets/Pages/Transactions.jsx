@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 
 
-export default function Transactions() {
+export default function Transactions({transactions, setTransactions}) {
     const [title, setTitle] = useState("")
     const [type, setType] = useState("")
     const [amount, setAmount] = useState(0)
@@ -11,16 +11,16 @@ export default function Transactions() {
     const [selectedType, setSelectedType] = useState("")
     const [started, setStarted] = useState("")
     const [ended, setEnded] = useState("")
+    const inputFile = useRef(null)
 
-    const transactionsData = [
-  { title: "Spesa supermercato", type: "uscita", amount: 50, date: "2023-09-01" },
-  { title: "Stipendio", type: "entrata", amount: 1500, date: "2023-09-05" },
-  { title: "Cena fuori", type: "uscita", amount: 80, date: "2023-09-10" },
-  { title: "Vendita libro", type: "entrata", amount: 30, date: "2023-09-12" },
-  { title: "Benzina", type: "uscita", amount: 60, date: "2023-09-15" },
-  { title: "Regalo compleanno", type: "uscita", amount: 100, date: "2023-09-20" },
-  { title: "Bonus lavoro", type: "entrata", amount: 200, date: "2023-09-25" }
-];
+
+
+    const filteredTransactions = transactions.filter((t) => {
+        return t.title.toLowerCase().includes(search.toLowerCase()) &&
+            (selectedType === "" || selectedType === "tutte" || t.type === selectedType) &&
+            (!started || t.date >= started) &&
+            (!ended || t.date <= ended)
+    })
 
     return (
         <div className="container-fluid px-4">
@@ -39,10 +39,10 @@ export default function Transactions() {
 
                 <div className="col">
                     <label className="form-label"><strong>Specifica il Tipo:</strong></label>
-                    <select 
-                    className="form-select"
-                    value={selectedType}
-                    onChange={(e) => setSelectedType(e.target.value)}
+                    <select
+                        className="form-select"
+                        value={selectedType}
+                        onChange={(e) => setSelectedType(e.target.value)}
                     >
                         <option value="">-- Seleziona il tipo --</option>
                         <option value="tutte">Tutte</option>
@@ -70,7 +70,7 @@ export default function Transactions() {
                     />
                 </div>
 
-                
+
             </div>
 
             <h1 className="title-pages">TRANSAZIONI</h1>
@@ -156,12 +156,17 @@ export default function Transactions() {
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>Ciao</td>
-                            <td>Ciao</td>
-                            <td>Ciao</td>
-                            <td>Ciao</td>
-                        </tr>
+                        {
+                            filteredTransactions.map((f) => (
+                                <tr>
+                                    <td>{f.title}</td>
+                                    <td>{f.type}</td>
+                                    <td>{f.date}</td>
+                                    <td>{f.amount}</td>
+                                </tr>
+                            ))
+                        }
+
                     </tbody>
                 </table>
             </div>
