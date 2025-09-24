@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-export default function Transactions({transactions, setTransactions}) {
+export default function Transactions({ transactions, setTransactions }) {
     const [title, setTitle] = useState("")
     const [type, setType] = useState("")
     const [amount, setAmount] = useState(0)
@@ -22,10 +22,15 @@ export default function Transactions({transactions, setTransactions}) {
     })
 
 
-    function addTransaction(){
-    const newTransaction = {title, type, date, amount}
-    setTransactions([...transactions, newTransaction])
+    function addTransaction() {
+        const newTransaction = {  id: Date.now(), title, type, date, amount }
+        setTransactions([...transactions, newTransaction])
     }
+
+     function deleteTransaction(id) {
+      setTransactions(prev => prev.filter(t => t.id !== id)) 
+    }
+
 
     return (
         <div className="container-fluid px-4">
@@ -146,13 +151,14 @@ export default function Transactions({transactions, setTransactions}) {
                 </div>
 
             </div>
-            <button type="button" className="btn btn-primary mt-3" onClick={addTransaction}>Aggiungi Transazione</button>
+            <button type="button" className="btn btn-success mt-3" onClick={addTransaction}>Aggiungi Transazione</button>
 
             <div className="mt-5">
                 <h2><strong>Storico Transazioni:</strong></h2>
                 <table className="table table-striped">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Titolo</th>
                             <th>Tipo</th>
                             <th>Data</th>
@@ -162,12 +168,17 @@ export default function Transactions({transactions, setTransactions}) {
 
                     <tbody>
                         {
-                            filteredTransactions.map((f, index) => (
-                                <tr key={index}>
+                            filteredTransactions.map((f) => (
+                                <tr key={f.id}>
+                                    <td>{f.id}</td>
                                     <td>{f.title}</td>
                                     <td>{f.type}</td>
                                     <td>{f.date}</td>
                                     <td>{f.amount}</td>
+                                    <td className="d-flex gap-2">
+                                        <button className="btn btn-primary btn-sm">✏️</button>
+                                        <button className="btn btn-dark btn-sm" onClick={() => deleteTransaction(f.id)}>❌</button>
+                                    </td>
                                 </tr>
                             ))
                         }
