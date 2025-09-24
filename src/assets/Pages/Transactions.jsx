@@ -11,6 +11,7 @@ export default function Transactions({ transactions, setTransactions }) {
     const [selectedType, setSelectedType] = useState("")
     const [started, setStarted] = useState("")
     const [ended, setEnded] = useState("")
+    const [editingId, setEditingId] = useState(null)
 
 
 
@@ -23,12 +24,28 @@ export default function Transactions({ transactions, setTransactions }) {
 
 
     function addTransaction() {
-        const newTransaction = {  id: Date.now(), title, type, date, amount }
-        setTransactions([...transactions, newTransaction])
+        const newTransaction = { id: Date.now(), title, type, date, amount }
+        if (!editingId) {
+            setTransactions([...transactions, newTransaction])
+        } else {
+            setTransactions(prev =>
+                prev.map(t => t.id === editingId ? { ...t, title, type, amount, date } : t)
+            );
+        }
     }
 
-     function deleteTransaction(id) {
-      setTransactions(prev => prev.filter(t => t.id !== id)) 
+    function deleteTransaction(id) {
+        setTransactions(prev => prev.filter(t => t.id !== id))
+    }
+
+    function editTransaction(id) {
+        const transactionToEdit = transactions.find(t => t.id === id)
+        if (!transactionToEdit) return;
+        setTitle(transactionToEdit.title)
+        setType(transactionToEdit.type)
+        setAmount(transactionToEdit.amount)
+        setDate(transactionToEdit.date)
+        setEditingId(id)
     }
 
 
@@ -176,7 +193,7 @@ export default function Transactions({ transactions, setTransactions }) {
                                     <td>{f.date}</td>
                                     <td>{f.amount}</td>
                                     <td className="d-flex gap-2">
-                                        <button className="btn btn-primary btn-sm">✏️</button>
+                                        <button className="btn btn-primary btn-sm" onClick={() => editTransaction(f.id)}>✏️</button>
                                         <button className="btn btn-dark btn-sm" onClick={() => deleteTransaction(f.id)}>❌</button>
                                     </td>
                                 </tr>
