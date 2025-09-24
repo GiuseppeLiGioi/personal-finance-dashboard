@@ -1,4 +1,4 @@
-import { useState, useRef } from "react"
+import { useState } from "react"
 
 
 export default function Transactions({transactions, setTransactions}) {
@@ -11,7 +11,6 @@ export default function Transactions({transactions, setTransactions}) {
     const [selectedType, setSelectedType] = useState("")
     const [started, setStarted] = useState("")
     const [ended, setEnded] = useState("")
-    const inputFile = useRef(null)
 
 
 
