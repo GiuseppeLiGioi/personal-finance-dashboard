@@ -1,0 +1,34 @@
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
+
+export default function MonthlyBarChart({ transactions }) {
+  // Raggruppo le uscite per mese
+  const monthlyData = transactions.reduce((acc, t) => {
+    if (t.type === "uscita") {
+      const month = new Date(t.date).toLocaleString("it-IT", { month: "short", year: "numeric" });
+      const found = acc.find(item => item.month === month);
+      if (found) {
+        found.total += t.amount;
+      } else {
+        acc.push({ month, total: t.amount });
+      }
+    }
+    return acc;
+  }, []);
+
+  return (
+    <div className="card">
+      <div className="card-body">
+        <h2 className="card-title">Spese Mensili</h2>
+        <p className="card-text">Totale delle uscite per ogni mese.</p>
+      </div>
+      <BarChart width={600} height={300} data={monthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="month" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Bar dataKey="total" fill="#dc3545" name="Uscite" />
+      </BarChart>
+    </div>
+  );
+}

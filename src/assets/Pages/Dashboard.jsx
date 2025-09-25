@@ -1,5 +1,7 @@
 import BalanceChart from "../Components/charts/BalanceChart"
 import CategoryPie from "../Components/charts/CategoryPie"
+import DailyHeatmap from "../Components/charts/DailyHeatmap"
+import MonthlyBarChart from "../Components/charts/MonthlyBarChart"
 
 export default function Dashboard({ transactions, setTransactions }) {
 
@@ -90,6 +92,28 @@ export default function Dashboard({ transactions, setTransactions }) {
                     </div>
 
                 </div>
+
+
+                <div className="col-md-8 mt-5">
+                    <div className="card" style={{ backgroundColor: "rgba(111, 66, 193, 0.8)" }}>
+                        <div className="card-body">
+                            <MonthlyBarChart transactions={transactions} />
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div className="col-md-4 mt-5">
+                    <div className="card" style={{ backgroundColor: "rgba(40, 167, 69, 0.8)" }}>
+                        <div className="card-body">
+                            <DailyHeatmap transactions={transactions} />
+                        </div>
+
+                    </div>
+
+                </div>
+
 
 
 
