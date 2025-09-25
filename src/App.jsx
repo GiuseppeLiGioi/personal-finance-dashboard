@@ -23,7 +23,7 @@ const [transactions, setTransactions] = useState(transactionsData);
             <div className='col-md-10'>
 
               <Routes>
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/" element={<Dashboard transactions={transactions} setTransactions={setTransactions}  />} />
                 <Route path="/transactions" element={<Transactions transactions={transactions} setTransactions={setTransactions}  />} />
                 <Route path="settings" element={<Settings transactions={transactions} setTransactions={setTransactions}/>} />
               </Routes>
