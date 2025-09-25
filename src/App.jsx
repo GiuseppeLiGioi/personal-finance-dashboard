@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Dashboard from "./assets/pages/Dashboard"
 import { transactionsData } from "./assets/utils/transactions";
 import Header from './assets/Components/Header';

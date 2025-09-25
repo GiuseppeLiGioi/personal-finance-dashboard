@@ -1,4 +1,5 @@
 import { useState } from "react"
+import EditModal from "../Components/EditModal"
 
 
 export default function Transactions({ transactions, setTransactions }) {
@@ -12,6 +13,10 @@ export default function Transactions({ transactions, setTransactions }) {
     const [started, setStarted] = useState("")
     const [ended, setEnded] = useState("")
     const [editingId, setEditingId] = useState(null)
+    const [editingTransaction, setEditingTransaction] = useState(null);
+    const [show, setShow] = useState(null);  
+    
+
 
 
 
@@ -41,11 +46,24 @@ export default function Transactions({ transactions, setTransactions }) {
     function editTransaction(id) {
         const transactionToEdit = transactions.find(t => t.id === id)
         if (!transactionToEdit) return;
-        setTitle(transactionToEdit.title)
-        setType(transactionToEdit.type)
-        setAmount(transactionToEdit.amount)
-        setDate(transactionToEdit.date)
+        setEditingTransaction(transactionToEdit)
         setEditingId(id)
+    }
+
+    function onSave({title, type, amount, date, id}){
+      setTransactions(prev => prev.map((t) => {
+        if(t.id === id){
+            return {...t, title, type, amount, date}
+        }else{
+            return t;
+        }
+    }))
+    setShow(false)
+
+    }
+
+    function onClose(){
+        setShow(false)
     }
 
 
@@ -193,7 +211,10 @@ export default function Transactions({ transactions, setTransactions }) {
                                     <td>{f.date}</td>
                                     <td>{f.amount}</td>
                                     <td className="d-flex gap-2">
-                                        <button className="btn btn-primary btn-sm" onClick={() => editTransaction(f.id)}>✏️</button>
+                                        <button className="btn btn-primary btn-sm" onClick={() => {
+                                            editTransaction(f.id)
+                                            setShow(true)
+                                        }}>✏️</button>
                                         <button className="btn btn-dark btn-sm" onClick={() => deleteTransaction(f.id)}>❌</button>
                                     </td>
                                 </tr>
@@ -203,6 +224,17 @@ export default function Transactions({ transactions, setTransactions }) {
                     </tbody>
                 </table>
             </div>
+            {
+                show &&
+           <EditModal 
+           show={show}
+           onSave={onSave}
+           onClose={onClose}
+           transaction={editingTransaction}
+           />
+            }
         </div>
+
+        
     )
 }

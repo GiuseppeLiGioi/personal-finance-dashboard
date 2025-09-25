@@ -18,3 +18,111 @@ html, body {
   height: 200px;
 }
 
+.modal.show {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1050;
+}
+
+.modal-dialog {
+    background: linear-gradient(145deg, #ffffff, #e6f0ff);
+    border-radius: 16px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+    min-width: 800px;
+    width: 90%;
+    padding: 25px;
+    animation: fadeIn 0.35s ease-out;
+    border: 2px solid #007bff;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 12px;
+}
+
+.modal-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #003366;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.modal-body {
+    padding: 20px 0;
+    font-size: 1rem;
+    color: #222;
+}
+
+.modal-body input,
+.modal-body select {
+    border-radius: 8px;
+    border: 1px solid #007bff;
+    padding: 8px 12px;
+    font-size: 0.95rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.modal-body input:focus,
+.modal-body select:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding-top: 15px;
+    border-top: 2px solid #007bff;
+}
+
+.modal-footer .btn {
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.25s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.modal-footer .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+}
+
+.modal-footer .btn-primary:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+.modal-footer .btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+}
+
+.modal-footer .btn-secondary:hover {
+    background-color: #495057;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-15px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+
+
