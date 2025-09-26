@@ -21,7 +21,7 @@ export default function Dashboard({ transactions, setTransactions }) {
     return (
         <div className="container-fluid px-4 dashboard">
 
-            {/* ====== Metriche ====== */}
+            
             <div className="row row-cols-2 row-cols-md-4 justify-content-center g-3">
                 <div className="col">
                     <div className="card card-saldo">
@@ -60,7 +60,7 @@ export default function Dashboard({ transactions, setTransactions }) {
                 </div>
             </div>
 
-            {/* ====== Grafici ====== */}
+            
             <div className="row row-cols-1 row-cols-md-2 justify-content-center g-3">
                 <div className="col-md-8 mt-5">
                     <div className="card card-balance card-chart">
