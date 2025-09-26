@@ -1,10 +1,9 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f5f6fa;
+body, html {
+  background-color: #e6f0fa;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
 }
 
 .sidebar{
@@ -127,6 +126,119 @@ html, body {
 .dashboard-card-p, .dashboard-card-title{
   color: white;
 }
+
+.dashboard {
+  padding: 2rem 1rem;
+  min-height: 100vh;
+}
+
+
+.card {
+  border: none;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.35s ease;
+  position: relative;
+}
+
+
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 35px rgba(0,0,0,0.15);
+}
+
+
+.card-saldo {
+  background: linear-gradient(135deg, #6f42c1, #9b6ef3);
+  color: white !important;
+}
+.card-entrate {
+  background: linear-gradient(135deg, #28a745, #51d88a);
+  color: white !important;
+}
+.card-uscite {
+  background: linear-gradient(135deg, #dc3545, #f87171);
+  color: white !important;
+}
+.card-numero {
+  background: linear-gradient(135deg, #17a2b8, #3bc9db);
+  color: white !important;
+}
+
+
+.card-saldo:hover { box-shadow: 0 0 20px rgba(111,66,193,0.6); }
+.card-entrate:hover { box-shadow: 0 0 20px rgba(40,167,69,0.6); }
+.card-uscite:hover { box-shadow: 0 0 20px rgba(220,53,69,0.6); }
+.card-numero:hover { box-shadow: 0 0 20px rgba(23,162,184,0.6); }
+
+
+.card-chart {
+  background: #ffffffdd;
+  border-radius: 1rem;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  transition: all 0.35s ease;
+  border: 2px solid white;
+}
+
+.card-chart:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+}
+
+
+.card-balance { background: linear-gradient(145deg, #edf0ff, #d6dbff); }
+.card-pie { background: linear-gradient(145deg, #e6fff4, #c8f5e2); }
+.card-bar { background: linear-gradient(145deg, #fffbe6, #fff3c4); }
+.card-heatmap { background: linear-gradient(145deg, #f3e6ff, #e2c8ff); }
+
+
+.dashboard-card-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: white !important;
+}
+.dashboard-card-p {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+  color: white !important;
+}
+
+.card-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1f2937 !important;
+}
+.card-text {
+  font-size: 0.95rem;
+  color: #4b5563 !important;
+  margin-bottom: 1rem;
+}
+
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+
+.row .col:nth-child(1) .card { animation-delay: 0.1s; }
+.row .col:nth-child(2) .card { animation-delay: 0.2s; }
+.row .col:nth-child(3) .card { animation-delay: 0.3s; }
+.row .col:nth-child(4) .card { animation-delay: 0.4s; }
+
+
+@media (max-width: 768px) {
+  .dashboard-card-title { font-size: 1.5rem; }
+  .card-title { font-size: 1.2rem; }
+}
+
 
 
 
