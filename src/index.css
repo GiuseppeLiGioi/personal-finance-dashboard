@@ -342,6 +342,42 @@ body, html {
 }
 
 
+.navbar {
+  position: sticky !important; 
+  top: 0 !important;
+  z-index: 999 !important;
+  background-color: #3b82f6 !important;
+  padding: 1rem 2rem !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+}
 
 
+.sidebar-desk-wrapper .link-sidebar.nav-link {
+  color: #fff !important;       /* forza il bianco */
+  font-size: 1.1rem !important;
+  font-weight: 600;
+  margin-bottom: 12px !important;
+  transition: all 0.3s ease;
+}
+
+.sidebar-desk-wrapper .link-sidebar.nav-link:hover {
+  background-color: rgba(255,255,255,0.15) !important;
+  transform: translateX(6px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.sidebar-desk-wrapper .link-sidebar.nav-link.active {
+  background-color: rgba(255,255,255,0.25) !important;
+  font-weight: 700 !important;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+
+.sidebar-desk-wrapper {
+  position: sticky !important;
+  top: 0 !important;
+  height: 100vh !important;
+  background: linear-gradient(180deg, #4f46e5, #3b82f6) !important;
+  padding: 2rem 1rem !important;
+}
 
