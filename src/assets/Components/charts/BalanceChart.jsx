@@ -16,12 +16,12 @@ export default function BalanceChart({ transactions }) {
     });
 
   return (
-    <div className="card">
+    <div className="card" style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>
       <div className="card-body">
         <h2 className="card-title">Andamento Saldo</h2>
       </div>
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={balanceData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+      <ResponsiveContainer width="100%" height={325}>
+        <LineChart data={balanceData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#cfd8dc" />
           <XAxis
             dataKey="date"

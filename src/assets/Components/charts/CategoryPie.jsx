@@ -18,12 +18,12 @@ export default function CategoryPie({ transactions }) {
   const COLORS = ["#28a745", "#dc3545"]; // verde = entrate, rosso = uscite
 
   return (
-    <div className="card">
+    <div className="card" style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>
       <div className="card-body">
         <h2 className="card-title">Entrate vs Uscite</h2>
         <p className="card-text">Distribuzione tra entrate e uscite per il periodo selezionato.</p>
       </div>
-      <PieChart width={450} height={300}>
+      <PieChart width={450} height={300} style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>
         <Pie
           data={pieData}
           dataKey="value"

@@ -17,13 +17,13 @@ export default function DailyHeatmap({ transactions }) {
   const maxTotal = Math.max(...dailyData.map(d => d.total));
 
   return (
-    <div className="card">
+    <div className="card" style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>
       <div className="card-body">
         <h2 className="card-title">Heatmap Giornaliera</h2>
         <p className="card-text">Totale delle transazioni per giorno. Colore più intenso = totale più alto.</p>
       </div>
       <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={dailyData} layout="vertical">
+        <BarChart data={dailyData} layout="vertical" style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>
           <XAxis type="number" hide />
           {/*YAxis personalizzato per avere date in grasseto sulla sx e barre grafico ordinate sulla destra*/}
             <YAxis
@@ -39,11 +39,11 @@ export default function DailyHeatmap({ transactions }) {
           />
 
           <Tooltip />
-          <Bar dataKey="total" fill="#8884d8">
+          <Bar dataKey="total" fill="#d88484ff" animationDuration={800} animationEasing="ease-out">
             {dailyData.map((entry, index) => {
               // Colore proporzionale al totale
               const intensity = Math.floor((entry.total / maxTotal) * 255);
-              const color = `rgb(${255 - intensity}, ${255 - intensity}, 255)`;
+              const color = `rgb(${235 - intensity}, ${255 - intensity}, 255)`;
               return <Cell key={`cell-${index}`} fill={color} />;
             })}
           </Bar>

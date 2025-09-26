@@ -16,12 +16,12 @@ export default function MonthlyBarChart({ transactions }) {
   }, []);
 
   return (
-    <div className="card">
+    <div className="card" style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>
       <div className="card-body">
         <h2 className="card-title">Spese Mensili</h2>
         <p className="card-text">Totale delle uscite per ogni mese.</p>
       </div>
-      <BarChart width={200} height={325} data={monthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+      <BarChart width={200} height={325} data={monthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="month" />
         <YAxis />
