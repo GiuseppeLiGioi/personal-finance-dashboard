@@ -1,7 +1,9 @@
 import { LineChart, ResponsiveContainer, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 
-export default function BalanceChart({ transactions }) {
+export default function BalanceChart({ transactions, title, description }) {
 
+
+  
   // Creo i dati cumulativi per il grafico
   const balanceData = transactions
     .sort((a, b) => new Date(a.date) - new Date(b.date))
@@ -16,9 +18,10 @@ export default function BalanceChart({ transactions }) {
     });
 
   return (
-    <div className="card" style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>
+    <div className="card chart-card" style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>
       <div className="card-body">
-        <h2 className="card-title">Andamento Saldo</h2>
+        <h2 className="card-title">{title}</h2>
+        <p className="card-text">{description}</p>
       </div>
       <ResponsiveContainer width="100%" height={325}>
         <LineChart data={balanceData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>

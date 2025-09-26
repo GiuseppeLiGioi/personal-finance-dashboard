@@ -1,6 +1,8 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from "recharts";
 
-export default function MonthlyBarChart({ transactions }) {
+export default function MonthlyBarChart({ transactions, title, description  }) {
+
+
   // Raggruppo le uscite per mese
   const monthlyData = transactions.reduce((acc, t) => {
     if (t.type === "uscita") {
@@ -16,10 +18,10 @@ export default function MonthlyBarChart({ transactions }) {
   }, []);
 
   return (
-    <div className="card" style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>
+    <div className="card chart-card" style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>
       <div className="card-body">
-        <h2 className="card-title">Spese Mensili</h2>
-        <p className="card-text">Totale delle uscite per ogni mese.</p>
+        <h2 className="card-title">{title}</h2>
+        <p className="card-text">{description}</p>
       </div>
       <BarChart width={200} height={325} data={monthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }} style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>
         <CartesianGrid strokeDasharray="3 3" />

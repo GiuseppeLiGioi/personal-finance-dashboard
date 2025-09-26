@@ -585,7 +585,7 @@ select.form-select.form-input:focus {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 .tr-green {
-    background-color: #10b98133 !important;
+    background-color: #19df2333 !important;
     color: #065f46;
     font-weight: 600;
     text-align: center;
@@ -593,13 +593,107 @@ select.form-select.form-input:focus {
 }
 
 .tr-red {
-    background-color: #ef444433 !important;
+    background-color: #f3111133 !important;
     color: #991b1b;
     font-weight: 600;
     text-align: center;
     transition: all 0.3s ease;
 }
+ .btn-custom {
+    background-color: #4e73df !important;
+    color: #fff !important;
+    border: 2px solid #4e73df !important;
+    border-radius: 8px !important;
+    padding: 8px 16px !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+}
 
+ .btn-custom:hover {
+    background-color: #3751a3 !important;
+    border-color: #3751a3 !important;
+}
+
+body.dark-theme {
+    background-color: #1c1c1c;
+    color: #fff;
+}
+body.dark-theme .chart-card .card-title .card-text{
+    color: white !important;
+}
+/* ================= DARK THEME ================= */
+body.dark-theme {
+    background-color: #0d0d0d !important;
+    color: #fff !important;
+}
+
+/* Card generiche e grafici */
+body.dark-theme .card,
+body.dark-theme .chart-card {
+    background-color: #1c1c1c !important;
+    border-color: #333 !important;
+}
+
+
+
+/* Input e Select */
+body.dark-theme .form-input,
+body.dark-theme .form-select {
+    background-color: #2c2c2c !important;
+    border: 1px solid #fff !important;
+    color: #fff !important;
+}
+
+/* Placeholder */
+body.dark-theme .form-input::placeholder,
+body.dark-theme .form-select::placeholder {
+    color: #fff !important;
+    opacity: 1;
+}
+
+/* Option select */
+body.dark-theme .form-select option {
+    background-color: #2c2c2c !important;
+    color: #fff !important;
+}
+
+/* Focus Input/Select */
+body.dark-theme .form-input:focus,
+body.dark-theme .form-select:focus {
+    border-color: #fff !important;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25) !important;
+    outline: none;
+}
+
+/* Tabelle transazioni */
+body.dark-theme .table-transactions
+ {
+    background-color: #1c1c1c !important;
+    color: #fff !important;
+    border-color: #333 !important;
+}
+
+/* Bottoni personalizzati */
+body.dark-theme .btn-custom {
+    background-color: #4e73df !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+}
+
+body.dark-theme .chart-card .card-title,
+body.dark-theme .chart-card .card-text {
+    color: #fff !important;
+}
+
+body.dark-theme .title-pages {
+ color: white !important;   
+}
+body.dark-theme .p-pages {
+ color: white !important;   
+}
+body.dark-theme .label-filters {
+ color: black !important;   
+}
 
 
 @media (max-width: 768px) {
@@ -621,3 +715,4 @@ select.form-select.form-input:focus {
         font-size: 0.95rem;
     }
 }
+

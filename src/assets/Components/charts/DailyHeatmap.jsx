@@ -1,6 +1,9 @@
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Cell } from "recharts";
 
-export default function DailyHeatmap({ transactions }) {
+export default function DailyHeatmap({ transactions, title, description  }) {
+
+
+ 
   // Raggruppo le transazioni per giorno e calcoliamo il totale
   const dailyData = transactions.reduce((acc, t) => {
     const date = t.date; // YYYY-MM-DD
@@ -17,12 +20,12 @@ export default function DailyHeatmap({ transactions }) {
   const maxTotal = Math.max(...dailyData.map(d => d.total));
 
   return (
-    <div className="card" style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>
+    <div className="card chart-card" style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>
       <div className="card-body">
-        <h2 className="card-title">Heatmap Giornaliera</h2>
-        <p className="card-text">Totale delle transazioni per giorno. Colore più intenso = totale più alto.</p>
+        <h2 className="card-title">{title}</h2>
+        <p className="card-text">{description}</p>
       </div>
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={325}>
         <BarChart data={dailyData} layout="vertical" style={{ backgroundColor: "#f0f4ff", borderRadius: "8px" }}>
           <XAxis type="number" hide />
           {/*YAxis personalizzato per avere date in grasseto sulla sx e barre grafico ordinate sulla destra*/}

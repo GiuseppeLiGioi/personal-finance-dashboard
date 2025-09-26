@@ -1,16 +1,36 @@
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react";
 import { transactionsData } from "../utils/transactions";
-
+import { translations } from "../utils/translations";
 import Papa from "papaparse";
 
-export default function Settings({ transactions, setTransactions }) {
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [confirmPassword, setConfirmPassword] = useState("")
-    const [language, setLanguage] = useState("")
-    const inputFile = useRef(null)
+export default function Settings({ transactions, setTransactions, language, setLanguage }) {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const inputFile = useRef(null);
+    const [theme, setTheme] = useState("auto");
 
+    const t = translations[language];
+
+    useEffect(() => {
+        applyTheme(theme);
+    }, [theme]);
+
+    function applyTheme(value) {
+        const body = document.body;
+        body.classList.remove("light-theme", "dark-theme");
+
+        if (value === "light") {
+            body.classList.add("light-theme");
+        } else if (value === "dark") {
+            body.classList.add("dark-theme");
+        } else if (value === "auto") {
+            body.classList.add("auto");
+            const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            body.classList.add(prefersDark ? "dark-theme" : "light-theme");
+        }
+    }
 
     function handleImportCsv() {
         if (!inputFile.current.files.length) return;
@@ -21,15 +41,12 @@ export default function Settings({ transactions, setTransactions }) {
             header: true,
             skipEmptyLines: true,
             complete: (results) => {
-                console.log(results.data)
-
-                setTransactions(prev => [...prev, ...results.data])
+                setTransactions(prev => [...prev, ...results.data]);
             }
-        })
+        });
     }
 
     function handleExport(transactions) {
-
         const csv = Papa.unparse(transactions);
         const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
         const url = URL.createObjectURL(blob);
@@ -42,103 +59,123 @@ export default function Settings({ transactions, setTransactions }) {
     }
 
     function resetData() {
-        setTransactions(transactionsData)
+        setTransactions(transactionsData);
     }
-
-
 
     return (
         <div className="container-fluid px-4">
-            <h1 className="title-pages">Impostazioni</h1>
-            <p className="p-pages">Gestisci le impostazioni della tua app.</p>
+            <h1 className="title-pages">{t.settings}</h1>
+            <p className="p-pages">{t.description}</p>
 
             <div className="mt-3">
-                <label className="form-label"><strong>Nome</strong></label>
+                <label className="form-label"><strong>{t.name}</strong></label>
                 <input
                     type="text"
                     className="form-input form-control"
-                    placeholder="Inserisci il tuo nome"
+                    placeholder={t.namePlaceholder}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
             </div>
 
             <div className="mt-3">
-                <label className="form-label"><strong>E-mail</strong></label>
+                <label className="form-label"><strong>{t.emailLabel || "E-mail"}</strong></label>
                 <input
                     type="text"
                     className="form-input form-control"
-                    placeholder="Inserisci la tua e-mail"
+                    placeholder={t.emailPlaceholder}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </div>
 
             <div className="mt-3">
-                <label className="form-label"><strong>Password</strong></label>
+                <label className="form-label"><strong>{t.passLabel || "Password"}</strong></label>
                 <input
                     type="text"
                     className="form-input form-control"
-                    placeholder="Inserisci la tua password"
+                    placeholder={t.passPlaceholder}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <input
                     type="text"
                     className="form-input form-control mt-2"
-                    placeholder="Ripeti la tua password"
+                    placeholder={t.repeatPassPlaceholder}
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                 />
             </div>
 
             <div className="mt-3">
-                <label className="form-label"><strong>Tema</strong></label>
+                <label className="form-label"><strong>{t.themeLabel}</strong></label>
                 <div className="form-check form-switch">
-                    <input className="form-check-input" type="checkbox" role="switch" id="switchCheckLight" />
-                    <label className="form-check-label" htmlFor="switchCheckLight">Tema chiaro</label>
+                    <input
+                        className="form-check-input"
+                        type="radio"
+                        name="theme"
+                        value="light"
+                        checked={theme === "light"}
+                        id="radioLight"
+                        onChange={(e) => setTheme(e.target.value)}
+                    />
+                    <label className="form-check-label" htmlFor="switchCheckLight">{t.light}</label>
                 </div>
                 <div className="form-check form-switch">
-                    <input className="form-check-input" type="checkbox" role="switch" id="switchCheckDark" />
-                    <label className="form-check-label" htmlFor="switchCheckDark">Tema scuro</label>
+                    <input
+                        className="form-check-input"
+                        type="radio"
+                        name="theme"
+                        value="dark"
+                        checked={theme === "dark"}
+                        id="radiodark"
+                        onChange={(e) => setTheme(e.target.value)}
+                    />
+                    <label className="form-check-label" htmlFor="switchCheckDark">{t.dark}</label>
                 </div>
                 <div className="form-check form-switch">
-                    <input className="form-check-input" type="checkbox" role="switch" id="switchCheckAuto" />
-                    <label className="form-check-label" htmlFor="switchCheckAuto">Automatico</label>
+                    <input
+                        className="form-check-input"
+                        type="radio"
+                        name="theme"
+                        value="auto"
+                        checked={theme === "auto"}
+                        id="radioAuto"
+                        onChange={(e) => setTheme(e.target.value)}
+                    />
+                    <label className="form-check-label" htmlFor="switchCheckAuto">{t.auto}</label>
                 </div>
             </div>
 
             <div className="mt-3">
-                <label className="form-label"><strong>Lingua</strong></label>
+                <label className="form-label"><strong>{t.languageLabel}</strong></label>
                 <select
                     className="form-input form-select"
                     value={language}
                     onChange={(e) => setLanguage(e.target.value)}
                 >
-                    <option value="">-- Seleziona Lingua --</option>
-                    <option value="italiano">Italiano</option>
-                    <option value="inglese">Inglese</option>
+                    <option value="">{t.languagePlaceholder}</option>
+                    <option value="it">Italiano</option>
+                    <option value="en">English</option>
                 </select>
             </div>
 
             <div className="mt-5">
-                <label className="form-label"><strong>File</strong></label>
+                <label className="form-label"><strong>{t.fileLabel}</strong></label>
                 <div className="d-flex flex-column">
                     <input
                         type="file"
                         className="form-input"
-                        placeholder="Importa un file..."
+                        placeholder={t.chooseFile}
                         ref={inputFile}
                     />
                     <div className="d-flex gap-3 mt-3">
-                        <button type="button" className="btn btn-primary" onClick={() => handleExport(transactions)}>Esporta CSV</button>
-                        <button type="button" className="btn btn-primary" onClick={handleImportCsv}>Importa CSV</button>
-                        <button type="button" className="btn btn-primary" onClick={resetData}>Reset Dati</button>
+                        <button type="button" className="btn-custom btn" onClick={() => handleExport(transactions)}>{t.exportFile}</button>
+                        <button type="button" className="btn-custom btn" onClick={handleImportCsv}>{t.importFile}</button>
+                        <button type="button" className="btn-custom btn" onClick={resetData}>{t.reset}</button>
                     </div>
                 </div>
             </div>
-
-
         </div>
-    )
+    );
 }
