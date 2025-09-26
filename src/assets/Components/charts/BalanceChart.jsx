@@ -20,7 +20,7 @@ export default function BalanceChart({ transactions }) {
       <div className="card-body">
         <h2 className="card-title">Andamento Saldo</h2>
       </div>
-      <LineChart width={800} height={300} data={balanceData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+      <LineChart width={800} height={325} data={balanceData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="date" />
         <YAxis />

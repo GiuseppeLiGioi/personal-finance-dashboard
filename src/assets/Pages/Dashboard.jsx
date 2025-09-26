@@ -86,7 +86,7 @@ export default function Dashboard({ transactions, setTransactions }) {
                     </div>
                 </div>
 
-                <div className="col-md-4 mt-5">
+                <div className="col-md-4 mt-5" >
                     <div className="card card-heatmap card-chart">
                         <div className="card-body">
                             <DailyHeatmap transactions={transactions} />

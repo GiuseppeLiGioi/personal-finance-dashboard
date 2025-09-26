@@ -21,7 +21,7 @@ export default function MonthlyBarChart({ transactions }) {
         <h2 className="card-title">Spese Mensili</h2>
         <p className="card-text">Totale delle uscite per ogni mese.</p>
       </div>
-      <BarChart width={600} height={300} data={monthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+      <BarChart width={200} height={325} data={monthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="month" />
         <YAxis />
