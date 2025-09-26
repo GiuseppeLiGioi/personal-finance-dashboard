@@ -1,11 +1,10 @@
-export default function Header(){
-    return(
-        <nav className="navbar sticky-top">
-            <h1>FINANCE DASHBOARD</h1>
-            <div className="container-fluid d-flex justify-content-center align-items-center column-gap-3">
-              <button type="submit" className="btn d-md-none">☰</button>
-            </div>
+import HamburgerMobile from "./HamburgerMobile"
 
+export default function Header() {
+    return (
+        <nav className="navbar d-flex justify-content-between align-items-center px-3">
+            <h1 className="header-title">FINANCE DASHBOARD</h1>
+            <HamburgerMobile />
         </nav>
     )
 }
