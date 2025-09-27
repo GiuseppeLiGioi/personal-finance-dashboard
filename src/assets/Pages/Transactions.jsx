@@ -1,6 +1,8 @@
 import { useState } from "react";
 import EditModal from "../Components/EditModal";
 import { translations } from "../utils/translations";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Transactions({ transactions, setTransactions, language }) {
   const [title, setTitle] = useState("");
@@ -34,10 +36,12 @@ export default function Transactions({ transactions, setTransactions, language }
         prev.map(tr => tr.id === editingId ? { ...tr, title, type, amount, date } : tr)
       );
     }
+    toast.success("Transazione aggiunta con successo ✅")
   }
 
   function deleteTransaction(id) {
     setTransactions(prev => prev.filter(tr => tr.id !== id));
+    toast.success("Transazione eliminata con successo ✅")
   }
 
   function editTransaction(id) {
@@ -51,6 +55,7 @@ export default function Transactions({ transactions, setTransactions, language }
   function onSave({ title, type, amount, date, id }) {
     setTransactions(prev => prev.map(tr => tr.id === id ? { ...tr, title, type, amount, date } : tr));
     setShow(false);
+    toast.success("Transazione modificata con successo ✅")
   }
 
   function onClose() {
