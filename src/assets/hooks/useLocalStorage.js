@@ -11,10 +11,15 @@ export function useLocalStorage(key, initialValue) {
         }
     })
 
-    let valueToStore;
-    if (typeof value === "function") {
-        valueToStore = value(storedValue)
-    } else {
-        valueToStore = value;
+    const setValue = (value) => {
+        try{
+            const valueToStore = typeof value === "function" ? value(storedValue) : value;
+            setStoredValue(valueToStore)
+            window.localStorage.setItem(key, JSON.stringify(valueToStore))
+
+        }catch(error){
+         console.error(error)
+        }
     }
+    return [storedValue, setValue]
 }

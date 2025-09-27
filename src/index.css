@@ -711,6 +711,30 @@ body.dark-theme .label-filters {
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }
 
+.sidebar-footer {
+    margin-top: auto !important;
+    margin-bottom: 20px !important; 
+    padding: 10px 5px !important;
+    border-radius: 12px !important;
+    margin-top: 50vh !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+    background: rgba(255,255,255,0.05) !important; 
+}
+
+
+.welcome-text {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: #ffffff !important; 
+    text-shadow: 0 0 5px rgba(0,0,0,0.4) !important; 
+    transition: all 0.3s ease-in-out !important;
+}
+
+.welcome-text span {
+    color: #ffd700 !important; 
+    text-shadow: 0 0 8px #ffd700 !important;
+}
+
 
 @media (max-width: 768px) {
     .title-pages {

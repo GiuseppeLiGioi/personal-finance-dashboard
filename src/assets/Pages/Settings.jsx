@@ -2,16 +2,12 @@ import { useState, useRef, useEffect } from "react";
 import { transactionsData } from "../utils/transactions";
 import { translations } from "../utils/translations";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import 'react-toastify/dist/ReactToastify.css';
 import Papa from "papaparse";
+import { useLocalStorage } from "../hooks/useLocalStorage"
 
-export default function Settings({ transactions, setTransactions, language, setLanguage }) {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+export default function Settings({ transactions, setTransactions, language, setLanguage, name, setName, email, setEmail, password, setPassword, confirmPassword, setConfirmPassword, theme, setTheme }) {
     const inputFile = useRef(null);
-    const [theme, setTheme] = useState("light");
 
     const t = translations[language];
 
@@ -111,6 +107,7 @@ export default function Settings({ transactions, setTransactions, language, setL
                 setTransactions(prev => [...prev, ...results.data]);
             }
         });
+        toast.success(`CSV importato correttamente`);
     }
 
     function handleExport(transactions) {
@@ -123,10 +120,35 @@ export default function Settings({ transactions, setTransactions, language, setL
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+
+        toast.success(`CSV pronto per essere inviato a ${email}`);
     }
 
     function resetData() {
+        const enteredPassword = prompt("Inserisci la password per confermare il reset:");
+
+        if (enteredPassword !== password) {
+            toast.error("Password errata! Reset annullato.", {
+                className: "toast-error",
+                icon: "❌"
+            });
+            return;
+        }
+
+        
         setTransactions(transactionsData);
+        setTheme("light");
+        toast.success("Dati e impostazioni resettati correttamente!", {
+            className: "toast-success",
+            icon: "✅"
+        });
+    }
+
+    function resetForm() {
+        setName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
     }
 
     return (
@@ -181,7 +203,8 @@ export default function Settings({ transactions, setTransactions, language, setL
                     setConfirmPassword(confirmPassword)
                 }
             }}
-            >Salva Informazioni</button>
+            >{t.saveInformation}</button>
+            <button className="btn btn-custom mt-3 ms-2" onClick={() => resetForm()}>{t.resetForm}</button>
 
             <div className="mt-3">
                 <label className="form-label"><strong>{t.themeLabel}</strong></label>
