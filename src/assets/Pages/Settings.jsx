@@ -154,9 +154,12 @@ export default function Settings({ transactions, setTransactions, language, setL
                     value={language}
                     onChange={(e) => setLanguage(e.target.value)}
                 >
-                    <option value="">{t.languagePlaceholder}</option>
                     <option value="it">Italiano</option>
                     <option value="en">English</option>
+                    <option value="es">Espanòl</option>
+                    <option value="fr">Francois</option>
+                    <option value="de">Detusch</option>
+                    
                 </select>
             </div>
 
