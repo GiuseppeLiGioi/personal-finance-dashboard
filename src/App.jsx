@@ -8,6 +8,7 @@ import Settings from "./assets/Pages/Settings";
 import Transactions from "./assets/Pages/Transactions"
 import {translations} from "./assets/utils/translations"
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from "react-toastify";
 import { useState } from 'react';
 
 function App() {
@@ -29,6 +30,7 @@ const [language, setLanguage] = useState("it")
                 <Route path="/transactions" element={<Transactions transactions={transactions} setTransactions={setTransactions}  language={language} setLanguage={setLanguage}/>} />
                 <Route path="settings" element={<Settings transactions={transactions} setTransactions={setTransactions} language={language} setLanguage={setLanguage}/>} />
               </Routes>
+              <ToastContainer position='top-right' autoClose={3000}/>
             </div>
           </div>
         </div>

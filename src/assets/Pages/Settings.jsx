@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { transactionsData } from "../utils/transactions";
 import { translations } from "../utils/translations";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Papa from "papaparse";
 
 export default function Settings({ transactions, setTransactions, language, setLanguage }) {
@@ -13,9 +15,53 @@ export default function Settings({ transactions, setTransactions, language, setL
 
     const t = translations[language];
 
+
     useEffect(() => {
         applyTheme(theme);
     }, [theme]);
+
+
+    function validateForm() {
+        if (!name.trim()) {
+            toast.error("Il campo Nome è obbligaotrio")
+            return false;
+        }
+        if (/\d/.test(name)) {
+            toast.error("Il campo Nome non deve contenere numeri!");
+            return false;
+        }
+        if (!email.trim()) {
+            toast.error("Il campo email è obbligaotrio")
+            return false;
+        }
+        if (!email.trim().includes("@")) {
+            toast.error("Il campo email deve contenere @")
+            return false;
+        }
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            toast.error("Inserisci un indirizzo email valido");
+            return false;
+        }
+        if (!password.trim()) {
+            toast.error("Il campo password è obbligaotrio")
+            return false;
+        }
+        if (!/[A-Z]/.test(password)) {
+            toast.error("La password deve contenere almeno una lettera maiuscola");
+            return false;
+        }
+        if (password.length < 8) {
+            toast.error("La password deve contenere almeno 8 caratteri");
+            return false;
+        }
+        if (confirmPassword !== password) {
+            toast.error("La conferma della password non è corretta");
+            return false;
+        }
+
+    }
+
+
 
     function applyTheme(value) {
         const body = document.body;
@@ -30,6 +76,11 @@ export default function Settings({ transactions, setTransactions, language, setL
             const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
             body.classList.add(prefersDark ? "dark-theme" : "light-theme");
         }
+    }
+
+    function handleSave(){
+        if(!validateForm) return;
+        toast.success("Informazioni salvate con successo! ✅")
     }
 
     function handleImportCsv() {
@@ -159,7 +210,7 @@ export default function Settings({ transactions, setTransactions, language, setL
                     <option value="es">Espanòl</option>
                     <option value="fr">Francois</option>
                     <option value="de">Detusch</option>
-                    
+
                 </select>
             </div>
 
