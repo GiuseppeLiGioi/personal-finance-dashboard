@@ -695,6 +695,22 @@ body.dark-theme .label-filters {
  color: black !important;   
 }
 
+.toast-error {
+  background: linear-gradient(90deg, #e74c3c, #c0392b);
+  color: white;
+  font-weight: bold;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.toast-success {
+  background: linear-gradient(90deg, #2ecc71, #27ae60);
+  color: white;
+  font-weight: bold;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
 
 @media (max-width: 768px) {
     .title-pages {

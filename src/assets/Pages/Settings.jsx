@@ -11,7 +11,7 @@ export default function Settings({ transactions, setTransactions, language, setL
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const inputFile = useRef(null);
-    const [theme, setTheme] = useState("auto");
+    const [theme, setTheme] = useState("light");
 
     const t = translations[language];
 
@@ -21,45 +21,61 @@ export default function Settings({ transactions, setTransactions, language, setL
     }, [theme]);
 
 
-    function validateForm() {
+    function validateForm(name, email, password, confirmPassword) {
         if (!name.trim()) {
-            toast.error("Il campo Nome è obbligaotrio")
-            return false;
-        }
-        if (/\d/.test(name)) {
-            toast.error("Il campo Nome non deve contenere numeri!");
-            return false;
-        }
-        if (!email.trim()) {
-            toast.error("Il campo email è obbligaotrio")
-            return false;
-        }
-        if (!email.trim().includes("@")) {
-            toast.error("Il campo email deve contenere @")
-            return false;
-        }
-        if (!/\S+@\S+\.\S+/.test(email)) {
-            toast.error("Inserisci un indirizzo email valido");
-            return false;
-        }
-        if (!password.trim()) {
-            toast.error("Il campo password è obbligaotrio")
-            return false;
-        }
-        if (!/[A-Z]/.test(password)) {
-            toast.error("La password deve contenere almeno una lettera maiuscola");
-            return false;
-        }
-        if (password.length < 8) {
-            toast.error("La password deve contenere almeno 8 caratteri");
-            return false;
-        }
-        if (confirmPassword !== password) {
-            toast.error("La conferma della password non è corretta");
+            toast.error("Il campo Nome è obbligatorio", {
+                className: "toast-error",
+                icon: "⚠️"
+            });
             return false;
         }
 
+        if (/\d/.test(name)) {
+            toast.error("Il campo Nome non deve contenere numeri!", {
+                className: "toast-error",
+                icon: "❌"
+            });
+            return false;
+        }
+
+        if (!email.trim()) {
+            toast.error("Il campo Email è obbligatorio", { className: "toast-error", icon: "⚠️" });
+            return false;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            toast.error("Email non valida", { className: "toast-error", icon: "❌" });
+            return false;
+        }
+
+        if (!password.trim()) {
+            toast.error("Il campo Password è obbligatorio", { className: "toast-error", icon: "⚠️" });
+            return false;
+        }
+
+        if (!/[A-Z]/.test(password)) {
+            toast.error("La password deve contenere almeno una lettera maiuscola", { className: "toast-error", icon: "❌" });
+            return false;
+        }
+
+        if (password.length < 8) {
+            toast.error("La password deve contenere almeno 8 caratteri", { className: "toast-error", icon: "❌" });
+            return false;
+        }
+
+        if (confirmPassword !== password) {
+            toast.error("La conferma della password non è corretta", { className: "toast-error", icon: "❌" });
+            return false;
+        }
+
+        toast.success("Informazioni salvate correttamente!", {
+            className: "toast-success",
+            icon: "✅"
+        });
+
+        return true;
     }
+
 
 
 
@@ -78,9 +94,9 @@ export default function Settings({ transactions, setTransactions, language, setL
         }
     }
 
-    function handleSave(){
-        if(!validateForm) return;
-        toast.success("Informazioni salvate con successo! ✅")
+    function handleSave() {
+        if (!validateForm()) return;
+        toast.success("Informazioni salvate con successo!");
     }
 
     function handleImportCsv() {
@@ -143,20 +159,29 @@ export default function Settings({ transactions, setTransactions, language, setL
             <div className="mt-3">
                 <label className="form-label"><strong>{t.passLabel || "Password"}</strong></label>
                 <input
-                    type="text"
+                    type="password"
                     className="form-input form-control"
                     placeholder={t.passPlaceholder}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <input
-                    type="text"
+                    type="password"
                     className="form-input form-control mt-2"
                     placeholder={t.repeatPassPlaceholder}
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                 />
             </div>
+            <button className="btn btn-custom mt-3" onClick={() => {
+                if (validateForm(name, email, password, confirmPassword)) {
+                    setName(name)
+                    setEmail(email)
+                    setPassword(password)
+                    setConfirmPassword(confirmPassword)
+                }
+            }}
+            >Salva Informazioni</button>
 
             <div className="mt-3">
                 <label className="form-label"><strong>{t.themeLabel}</strong></label>
