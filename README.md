@@ -4,6 +4,22 @@ Finance Dashboard è un'applicazione web moderna e responsive per la gestione de
 
 ---
 
+### 📸 Screenshot
+
+- **Dashboard homePage**
+ ![app-home](https://github.com/user-attachments/assets/363db1cd-e710-4b46-a63d-f72e92ba9a58)
+
+- **Transazioni**
+ ![app-transazioni](https://github.com/user-attachments/assets/6c3c9cc1-0baf-4b04-843e-d6fda3971129)
+  
+- **Impostazioni**
+ ![app-settings](https://github.com/user-attachments/assets/2a1805c9-3d12-4a1a-be3f-a7ec265e70c9)
+
+- **Modalità Dark**
+ ![app-dark](https://github.com/user-attachments/assets/d5e71562-c0d4-4fc3-a401-d55e582f0e8c)
+
+
+
 ## 🚀 Caratteristiche principali
 
 ### 🏠 Dashboard (Home)
