@@ -67,24 +67,43 @@ Finance Dashboard è un'applicazione web moderna e responsive per la gestione de
 
 ## 📁 Struttura del progetto
 Finance-Dashboard/
+
 ├── src/
+
 │ ├── assets/
+
 │ │ ├── Components/
+
 │ │ │ ├── Header.jsx
+
 │ │ │ ├── Sidebar.jsx
+
 │ │ │ └── charts/  --> BalanceChart.jsx, CategoryPie.jsx, DailyHeatmap.jsx, MonthlyAmount.jsx
+
 │ │ ├── Pages/
+
 │ │ │ ├── Dashboard.jsx
+
 │ │ │ ├── Transactions.jsx
+
 │ │ │ └── Settings.jsx
+
 │ │ └── utils/
+
 │ │ ├── transactions.js
+
 │ │ └── translations.js
+
 │ ├── hooks/
+
 │ │ └── useLocalStorage.js
+
 │ └── App.jsx
+
 ├── public/
+
 ├── package.json
+
 └── README.md
 
 ---
@@ -115,7 +134,9 @@ L'app sarà disponibile su http://localhost:5173.
 📬 Contatti
 
 **Autore**: Giuseppe Li Gioi
+
 **GitHub**: https://github.com/GiuseppeliGioi
+
 **Email**: giuseppe.li.gioi.job@gmail.com
 
 ⭐ Se ti piace il progetto, lascia una stella su GitHub! ⭐
